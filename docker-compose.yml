@@ -1,0 +1,19 @@
+version: '3'
+services:
+  ui:
+    build: ./front-end
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+  api:
+    restart: always
+    build: ./back-end
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
